@@ -1,5 +1,6 @@
 import http from 'k6/http'; 
 import encoding from 'k6/encoding'; 
+import { uuidv4 } from './util.js';
 
 export const UIEndpoint = class UIEndpoint {
     constructor(httpClient) {
@@ -82,8 +83,9 @@ export const GrafanaClient = class GrafanaClient {
     }
 
     onBeforeRequest(params) {
+        params = params || {};
+        params.headers = params.headers || {};
         if (this.orgId && this.orgId > 0) {
-            params = params.headers || {};
             params.headers['X-Grafana-Org-Id'] = this.orgId;
         }
     }
@@ -219,3 +221,31 @@ export const createBearerAuthClient = (url, token) => {
     return new GrafanaClient(new BearerAuthClient(url, '', token));
 };
 
+export const createServiceAccountToken = (url, username, password) => {
+    return () => {
+        const basicClient = new BasicAuthClient(url, '', username, password);
+        const saName = `k6-admin-sa-${uuidv4().slice(0, 6)}`;
+        const saRes = basicClient.post('/api/serviceaccounts', JSON.stringify({
+            name: saName,
+            role: 'Admin'
+        }));
+
+        if (saRes.status !== 200 && saRes.status !== 201) { 
+            throw new Error(`Failed to create service account, status: ${saRes.status}`); 
+        }
+        const saId = JSON.parse(saRes.body).id; 
+
+        const tokenName = `k6-temp-token-${uuidv4().slice(0, 6)}`;
+        const tokenRes = basicClient.post(`/api/serviceaccounts/${saId}/tokens`, JSON.stringify({
+            name: tokenName,
+            secondsToLive: 0, 
+        })); 
+
+        if (tokenRes.status != 200 && tokenRes.status != 201) { 
+            throw new Error(`Failed to create service account token, status: ${tokenRes.status}`); 
+        }
+
+        const token = JSON.parse(tokenRes.body).key; 
+        return new GrafanaClient(new BearerAuthClient(url, '', token));
+    };
+};

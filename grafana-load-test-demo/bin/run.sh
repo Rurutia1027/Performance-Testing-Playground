@@ -8,7 +8,7 @@ run() {
   # k6 execution options
   DURATION="2m"
   VUS="2"
-  TESTCASE="auth_token_test.js"
+  TESTCASE="auth_proxy_test.js"
 
   # environment options
   URL="http://localhost:3000"
