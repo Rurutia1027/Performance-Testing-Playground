@@ -1,0 +1,38 @@
+services:
+  ratings:
+    build:
+      context: ./src/ratings
+    container_name: bookinfo-ratings
+    ports:
+      - "9080:9080"
+
+  details:
+    build:
+      context: ./src/details
+    container_name: bookinfo-details
+    ports:
+      - "9081:9080"
+
+  reviews:
+    build:
+      context: ./src/reviews
+    container_name: bookinfo-reviews
+    environment:
+      RATINGS_HOSTNAME: ratings
+    ports:
+      - "9082:9080"
+    depends_on:
+      - ratings
+
+  productpage:
+    build:
+      context: ./src/productpage
+    container_name: bookinfo-productpage
+    environment:
+      DETAILS_HOSTNAME: details
+      REVIEWS_HOSTNAME: reviews
+    ports:
+      - "9083:9080"
+    depends_on:
+      - details
+      - reviews
