@@ -61,30 +61,7 @@ Typical use cases in this repo:
 
 ## Repository Structure (Proposed)
 ```
-.
-├── bookinfo/
-│   ├── docker-compose/
-│   └── kubernetes/
-│
-├── k6/
-│   ├── scenarios/
-│   │   ├── smoke_test.js
-│   │   ├── load_test.js
-│   │   ├── stress_test.js
-│   │   └── spike_test.js
-│   ├── utils/
-│   └── README.md
-│
-├── jmeter/
-│   ├── test-plans/
-│   └── README.md
-│
-├── docs/
-│   ├── performance-testing-basics.md
-│   ├── k6-vs-jmeter.md
-│   └── metrics-explained.md
-│
-└── README.md
+TODO
 ```
 
 ## Performance Testing Concepts Covered 
