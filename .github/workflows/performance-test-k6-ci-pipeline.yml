@@ -1,0 +1,41 @@
+name: k6 Performance Test
+
+on: [push]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:20.10.24
+        options: --privileged
+    steps:
+      - uses: actions/checkout@v3
+      - name: Start Bookinfo 
+        run: |
+          cd bookinfo
+          docker-compose up -d    
+      - name: Wait for services
+        run: |
+          sleep 10 
+      - name: Verify containers are running
+        run: |
+          docker ps
+      - name: Verify Bookinfo APIs
+        run: |
+          endpoints=(
+            "http://localhost:9081/product/1"
+            "http://localhost:9082/reviews/1"
+            "http://localhost:9080/ratings/1"
+          )
+
+          for url in "${endpoints[@]}"; do
+            echo "Checking $url ..."
+            status=$(curl -s -o /dev/null -w "%{http_code}" $url)
+            if [ "$status" -ne 200 ]; then
+              echo "ERROR: $url returned status $status"
+              exit 1
+            else
+              echo "$url is OK"
+            fi
+          done
