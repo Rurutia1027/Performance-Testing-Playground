@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-set -euo pipefail
+#set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SRC_DIR="${ROOT_DIR}/src"
 
 run() {
   # k6 execution options
-  DURATION="15m"
+  DURATION="2m"
   VUS="2"
-  TESTCASE="annotations_by_tag_test.js"
+  TESTCASE="auth_token_test.js"
 
   # environment options
   URL="http://localhost:3000"
