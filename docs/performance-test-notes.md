@@ -48,7 +48,30 @@ export let options = {
 
 ## Ramp-Up and Ramp-Down 
 Ramp-up and ramp-down define how the number of virtual users changes over time, instead of starting all users at once. 
-- **Ramp-Up**: 
-- **Ramp-Down**: 
-- **Role**:
-- **Impact**:
+- **Ramp-Up**: Gradually increases VUs to simulate realistic user growth.
+- **Ramp-Down**: Gradually decreases VUs to simulate users leaving the system gracefully.
+- **Role**: Avoids sudden spikes that might not reflect real-world usage and reduces the risk of false negative in performance results. 
+- **Impact**: Proper ramping can expose performance issues that only occur during load transitions, such as initialization bottlenecks or resource contention. 
+
+## Environment Variables and Runtime Overrides 
+Parameters can be defined in multiple locations: default script values, JSON/YAML config files, environment variables, or command-line arguments. 
+- **Role**: Environment variables allow flexible, runtime-specific overrides without changing the script, which is essential for CI/CD pipelines. 
+- **Impact**: Ensures repeatable tests across environments while allowing parameter tuning based on system size or expected load. 
+
+Example with Docker: 
+```bash 
+docker run -e VUS=10 -e DURATION=5m grafana/k6 run test.js 
+```
+
+## Test-Specific Parameters 
+Beyond basic load parameters, performance testing often requires scenario-specific valeus, such as: 
+- API keys for authentication tokens 
+- Thresholds for slow queries
+- Specific service endpoints 
+- **Role**: These parameters provide context for the system under test, ensuring realistic and secure testing
+- **Impact**: Neglecting these can lead to tests that do not reflect actual user behavior, producing misleading results.
+
+
+## Conclusion 
+In performance testing, the careful configuraiton of core parameters -- **Virtual Users**, **Duration**, **Iterations**, **Ramp-Up/Ramp-Down**, and **Environment Variables** -- is essential for meanful results. K6 provides a flexible approach to define and override these parameters, whether through scripts, JSON/YAML files, or Docker environment variables. 
+By understanding the role and impact of each parameter, tester can design scenarios that closely mirror real-world usage, identify bottlenecks, and validate system stability under various conditions. 
