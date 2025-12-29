@@ -24,7 +24,7 @@ jobs:
       - name: Verify Bookinfo APIs
         run: |
           endpoints=(
-            "http://localhost:9081/product/1"
+            "http://localhost:9081/products/1"
             "http://localhost:9082/reviews/1"
             "http://localhost:9080/ratings/1"
           )
