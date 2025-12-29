@@ -25,8 +25,13 @@ export const createTestdataDatasourceIfNotExists = (client) => {
         name: 'k6-testdata',
         type: 'testdata'
     }; 
+    
+    let res = client.datasources.getByName(payload.name);
+    
+    if (res.status === 404) {
+        res = client.datasources.create(payload);
+    }
 
-    let res = client.datasources.getByName(payload.name); 
     if (res.status === 404) { 
         throw new Error(`expected 200 response status when creating datasource, got ${res.status}`);
     }

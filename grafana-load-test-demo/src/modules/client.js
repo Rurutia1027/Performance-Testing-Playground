@@ -55,7 +55,8 @@ export const OrganizationEndpoint = class OrganizationEndpoint {
         let payload = {
             name: name,
         };
-        return this.httpClient.post(`/orgs`, JOSN.stringify(payload));
+        
+        return this.httpClient.post(`/orgs`, JSON.stringify(payload));
     }
 
     delete(id) {
