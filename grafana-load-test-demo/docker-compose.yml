@@ -1,0 +1,13 @@
+# setup grafana for load test context
+services:
+  grafana:
+    image: grafana/grafana:12.3
+    container_name: grafana-for-load-test
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./conf/custom.ini:/etc/grafana/grafana.ini:ro
+    restart: unless-stopped
