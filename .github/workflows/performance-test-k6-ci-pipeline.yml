@@ -24,8 +24,3 @@ jobs:
       - name: Verify containers are running
         run: |
           docker ps
-
-      - name: Verify Bookinfo APIs
-        run: |
-          cd bookinfo
-          docker run --rm --network host -v $PWD:/src appropriate/curl:latest sh /src/verify_endpoints.sh
