@@ -1,21 +1,21 @@
 services:
   ratings:
     build:
-      context: ./src/ratings
+      context: ./bookinfo/src/ratings
     container_name: bookinfo-ratings
     ports:
       - "9080:9080"
 
   details:
     build:
-      context: ./src/details
+      context: ./bookinfo/src/details
     container_name: bookinfo-details
     ports:
       - "9081:9080"
 
   reviews:
     build:
-      context: ./src/reviews
+      context: ./bookinfo/src/reviews
     container_name: bookinfo-reviews
     environment:
       RATINGS_HOSTNAME: ratings
@@ -26,7 +26,7 @@ services:
 
   productpage:
     build:
-      context: ./src/productpage
+      context: ./bookinfo/src/productpage
     container_name: bookinfo-productpage
     environment:
       DETAILS_HOSTNAME: details
