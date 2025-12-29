@@ -1,0 +1,26 @@
+name: k6 Performance Test
+
+on: [push]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:20.10.24
+        options: --privileged
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Start Bookinfo 
+        run: |
+          cd bookinfo
+          docker compose up -d
+
+      - name: Wait for services
+        run: |
+          sleep 10 
+
+      - name: Verify containers are running
+        run: |
+          docker ps
