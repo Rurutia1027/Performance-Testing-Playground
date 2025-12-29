@@ -137,3 +137,6 @@ Results should be interpreted **comparatively**, not as absolute performance ben
 - Integrate Playwright for frontend validation 
 - **Export k6 result into Grafana dashboards**
 - Add GitHub Action pipelines 
+
+## LICENSE 
+[LICENSE](./LICENSE)
