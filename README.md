@@ -130,7 +130,7 @@ This project focuses on **practical and essential concepts**, including:
 ## CI / Automation (Future Scope)
 
 This repository is designed to be **CI-compatible**, especially with **GitHub Actions**, but without assuming large compute resources.
-Typically CI use cases:
+Typically, CI use cases:
 
 * Smoke performance tests
 * Regression detection
@@ -152,13 +152,6 @@ Typically CI use cases:
 
 This repository is a **learning and experimentation project**.
 Results should be interpreted **comparatively**, not as absolute performance benchmarks.
-
-## Next Steps
-
-* Add Istio traffic management scenarios
-* Integrate Playwright for frontend validation
-* **Export k6 result into Grafana dashboards**
-* Add GitHub Action pipelines
 
 ## LICENSE
 
