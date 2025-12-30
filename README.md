@@ -85,7 +85,17 @@ Typical use cases in this repo:
 ## Repository Structure (Proposed)
 
 ```
-TODO
+.
+├── LICENSE
+├── README.md
+├── bin // load testing setup shell script 
+├── bookinfo // src codes copied from Istio Bookinfo folder 
+├── conf // config files for grafana & promethus -> locally display k6 test reports 
+├── docker-compose.yml // docker compose setup test objects of Istio BookInfo 
+├── docs  // docs surrounding load test 
+├── examples // examples take from Grafana k6 load testing cases
+├── results // k6 test reports in json 
+└── src // k6 load test cases for Istio Bookinfo project
 ```
 
 ## Performance Testing Concepts Covered
