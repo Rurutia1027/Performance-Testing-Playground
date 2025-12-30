@@ -36,4 +36,4 @@ jobs:
       - name: Run k6 performance test
         run: |
           cd bin/
-          sh run.sh
+          bash run.sh
