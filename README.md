@@ -136,18 +136,6 @@ Typically, CI use cases:
 * Regression detection
 * Basic latency threshold checks
 
-## Intended Audience
-
-* Backend / Platform Engineers
-* Cloud-native learners
-* Engineers preparing for:
-
-> Kubernetes
-> Service Mesh
-> Performance testing interviews
-
-* Engineers transitioning from functional testing to performance testing
-
 ## Disclaimer
 
 This repository is a **learning and experimentation project**.
