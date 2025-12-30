@@ -85,7 +85,17 @@ Typical use cases in this repo:
 ## Repository Structure (Proposed)
 
 ```
-TODO
+.
+├── LICENSE
+├── README.md
+├── bin // load testing setup shell script 
+├── bookinfo // src codes copied from Istio Bookinfo folder 
+├── conf // config files for grafana & promethus -> locally display k6 test reports 
+├── docker-compose.yml // docker compose setup test objects of Istio BookInfo 
+├── docs  // docs surrounding load test 
+├── examples // examples take from Grafana k6 load testing cases
+├── results // k6 test reports in json 
+└── src // k6 load test cases for Istio Bookinfo project
 ```
 
 ## Performance Testing Concepts Covered
@@ -120,35 +130,16 @@ This project focuses on **practical and essential concepts**, including:
 ## CI / Automation (Future Scope)
 
 This repository is designed to be **CI-compatible**, especially with **GitHub Actions**, but without assuming large compute resources.
-Typically CI use cases:
+Typically, CI use cases:
 
 * Smoke performance tests
 * Regression detection
 * Basic latency threshold checks
 
-## Intended Audience
-
-* Backend / Platform Engineers
-* Cloud-native learners
-* Engineers preparing for:
-
-> Kubernetes
-> Service Mesh
-> Performance testing interviews
-
-* Engineers transitioning from functional testing to performance testing
-
 ## Disclaimer
 
 This repository is a **learning and experimentation project**.
 Results should be interpreted **comparatively**, not as absolute performance benchmarks.
-
-## Next Steps
-
-* Add Istio traffic management scenarios
-* Integrate Playwright for frontend validation
-* **Export k6 result into Grafana dashboards**
-* Add GitHub Action pipelines
 
 ## LICENSE
 
