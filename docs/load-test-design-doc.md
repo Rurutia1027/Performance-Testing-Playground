@@ -89,19 +89,19 @@ curl -X GET http://<BOOKINFO_HOST>/ratings/0
 - Independent testing identifies the impact of accumulated traffic on performance. 
 
 ## Test Scenarios & Parameters
-### Scenario 1: Entrypoint Load Test
+### [Scenario 1: Entrypoint Load Test](../src/scenario-1.js)
 - Description: Load test productpage to trigger downstream services.
 - Duration: 2 minutes
 - Virtual Users (VUs): 10
 - Metrics: Response time (P50/P90/P99), throughput, error rate
 
-### Scenario 2: Full Request Path Test
+### [Scenario 2: Full Request Path Test](../src//scenario-2.js)
 - Description: Simulate user visits triggering the full path: productpage → details → reviews → ratings.
 - Duration: 5 minutes
 - VUs: 20
 - Metrics: End-to-end latency, individual service latency, error rate
 
-## Scenario 3: Stress Test
+## [Scenario 3: Stress Test](../src/scenario-3.js)
 - Description: High-concurrency stress test to identify system bottlenecks.
 - Duration: 5–10 minutes
 - VUs: 50–100
