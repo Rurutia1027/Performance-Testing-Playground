@@ -28,9 +28,3 @@ jobs:
         run: |
           cd bin/
           sh run.sh
-
-      - name: Upload k6 results
-        uses: actions/upload-artifact@v3
-        with:
-          name: k6-scenario1-results
-          path: ../results/scenario1_results.json
